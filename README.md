@@ -70,4 +70,9 @@ Version|change|type|
 + <h3>command 'init --yes' will touch filsConfig.json fastly and automaticly, you can config floder and files. why I don't write commands to do that work? I think if files to much and folders are not only one, command is not convenient. But I still think how to realize this by command in reason.</h3>
 
 <h2>🌈Future</h2>
+
 ### as so far, the pakcage just realize above functions temporarily. But I'm still planning to develop more functions to full this package and do some optimizations to make it better and stronger. 
+
+<h2>Plan</h2>
+
+### recently, I want to add a few new functions. Details will be viwed as long as new version released.
