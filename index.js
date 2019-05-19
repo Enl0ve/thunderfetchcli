@@ -11,7 +11,7 @@ const fileFetch = fileFetchApi.fileFetch;
 const fileFetchDiff = fileFetchApi.fileFetchDiff;
 const filesPartFetchFromOrigin = fileFetchApi.filesPartFetchFromOrigin;
 
-const VERSION = "1.4.0";
+const VERSION = "1.4.1";
 
 /**
  * show version
