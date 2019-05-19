@@ -48,14 +48,19 @@
 ```shell
     thunder c <option> <dirName>
 ```
+### if you want get all files, you can command
+```shell
+    thunder fileFetch -a(--all)
+```
+### if you want to mkdir diff, you can command
+```shell
+    thunder fileFetch -d(--diff)
+```
+### if you want to get part files, you can command
+```shell
+    thunder fileFetch -p(--part) <filename>
+```
 
-```shell
-    thunder fileFetch -a
-```
-### or
-```shell
-    thunder fileFetch -all
-```
 ### 🚩above commands are the most important command that you can get files you config in filesConfig.
 
 <h2>ChangeLOG</h2>
@@ -63,6 +68,7 @@
 Version|change|type|
 ---|:--:|---:
 1.3.0|abstract the process of setting filsConfig to funciton abstractSetConfig|optimization
+1.4.0|add function 'thunder fileFetch -p [filename]'
 
 <h2>Issues</h2>
 
