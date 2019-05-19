@@ -1,6 +1,6 @@
 #!/usr/bin/env node 
 //important,标记为node运行环境
-
+//jshint esversion:6
 const program = require('commander');
 const shelljs = require('shelljs');
 const path = require('path');
@@ -9,6 +9,7 @@ const fs = require('fs');
 const fileFetchApi = require('./src/fileFetchAPI');
 const fileFetch = fileFetchApi.fileFetch;
 const fileFetchDiff = fileFetchApi.fileFetchDiff;
+const filesPartFetchFromOrigin = fileFetchApi.filesPartFetchFromOrigin;
 
 const VERSION = "1.3.3";
 
@@ -24,7 +25,7 @@ program
  *              __filename current file directionary, e.g, E:\repository_enlove\firstCli\index.js
  * 
  * change: 
- * 1. @changeLog:abstract the process of setting filsConfig to funciton abstractSetConfig
+ * 1. @changeLog: abstract the process of setting filsConfig to funciton abstractSetConfig
  *    @function: abstractSetConfig:void
  *    @param: dirName:string, required.  description: the file path to set
  *            pathType:string, required. desctiption: rootPath || destPath
@@ -48,7 +49,6 @@ const abstractSetConfig = (dirName, pathType) => {
          * typeOf data is string, need to transform to json object
          */
         let config = JSON.parse(data);
-
         if(config.hasOwnProperty(pathType)) {
             config[pathType] = dirName;
             fs.writeFile('filesConfig.json', JSON.stringify(config), (err) => {
@@ -95,6 +95,9 @@ program
 
 /**
  * fetch file from origin, and put them into dest Accroding filesConfig
+ * 
+ * change:
+ * 1. @changeLog: fix the function to fetch files part that just you need
  */
 program
     .command("fileFetch")
@@ -104,11 +107,19 @@ program
     .option("-d --diff", "fetch files to diff floder", () => {
         fileFetchDiff();
     })
-    .option("-p --part <floder>", "get part file according args <floder>")
+    .option("-p --part <floder>", "get part file according args <floder>", (floder) =>{
+        /**
+         * @examples 
+         * condition 1: sigle file 
+         *  thunder fileFetch -p test1.txt
+         * condition 2: multi files
+         *  thunder fileFetch -p test1.txt,test2.txt
+         */
+        filesPartFetchFromOrigin(floder);
+    })
     .description("get files, with options provided to select")
     .usage("thunder fileFetch [options] [floder]")
     .action( () => {
-        
     });
 
 /**
